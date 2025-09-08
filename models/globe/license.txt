@@ -1,0 +1,8 @@
+Model Information:
+* title:	Lowpoly origami planet Earth
+* source:	https://sketchfab.com/3d-models/lowpoly-origami-planet-earth-7b26a322f28d44538051236bb635ea30
+* author:	assetfactory (https://sketchfab.com/assetfactory)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
