@@ -7,12 +7,111 @@
   </head>
   <body>
     <header>
-      <h1>Hi, I'm Evan</h1>
+      <h1 id="intro-text">Hi, I'm Evan</h1>
+      <div id="container3D"></div> <!-- Blank space for 3D models -->
     </header>
 
     <main>
-      <div id="container3D"></div>
+      <section id="about" style="padding: 50px; text-align: center; background-color: #111; color: #fff;">
+        <h2>About Me</h2>
+        <p>Second Year Computer Science student at the University of Auckland with award-winning experience across Web3, React, and fullstack development. Achievements include 1st Place at NZ’s first Web3 hackathon and Exec’s Choice at the UoA Scientific Hackathon. Skilled in Git, Solidity, React, Next.js, Tailwind CSS, and AI-driven object detection. Passionate about building innovative tech solutions and driving impactful projects.</p>
+      </section>
+
+      <section id="education" style="padding: 50px; background-color: #222; color: #fff; text-align: left;">
+        <h2>Education</h2>
+        <div>
+          <h3>University of Auckland</h3>
+          <p>Bachelor of Science in Computer Science</p>
+          <p>Auckland, NZ</p>
+          <p>March 2024–Present</p>
+        </div>
+      </section>
+
+      <section id="experience" style="padding: 50px; background-color: #111; color: #fff; text-align: left;">
+        <h2>Experience</h2>
+        <div>
+          <h3>WDCC - Web Development & Consulting Club</h3>
+          <p>Web Developer (Full Stack | React, Tailwind, Payload, Next.js, MongoDB)</p>
+          <p>Auckland, NZ</p>
+          <p>March 2025–Present</p>
+          <p>Contributed to the development of a full-stack website for the University of Auckland Investment Club (UAIC), enabling users to register, sign up, and complete membership payments online.</p>
+        </div>
+        <div>
+          <h3>Feel Good Kicks</h3>
+          <p>Web Designer & Front End Developer (Figma, React, Tailwind)</p>
+          <p>Auckland, NZ</p>
+          <p>Jan 2023–June 2023</p>
+          <p>Contributed to the development and design of an e-commerce platform for a sneaker retail business, supporting product listings, customer interactions, and streamlined online purchases.</p>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2>Projects</h2>
+        <div class="timeline">
+          <div class="timeline-event">
+            <h3>UAIC Website</h3>
+            <img src="images/wdcc.jpg" alt="UAIC Website Project Image" style="width:100%; height:auto; margin-top:10px;" />
+            <p><strong>Role:</strong> Full Stack Developer</p>
+            <p><strong>Date:</strong> March 2025–Present</p>
+            <p><strong>Tech Stack:</strong> React, Tailwind, Payload, Next.js, MongoDB</p>
+            <p>Developed a full-stack website for the University of Auckland Investment Club (UAIC), enabling user registration, sign-ups, and online membership payments.</p>
+            <a href="#">View Details</a>
+          </div>
+          <div class="timeline-event">
+            <h3>PiggyQuest</h3>
+            <img src="images/piggyquest.jpg" alt="PiggyQuest Project Image" style="width:100%; height:auto; margin-top:10px;" />
+            <p><strong>Role:</strong> Hackathon Participant</p>
+            <p><strong>Date:</strong> WDCC x SESA Hackathon</p>
+            <p><strong>Tech Stack:</strong> User-Centered Design</p>
+            <p>Created a digital app to gamify household tasks for kids, helping parents tackle real family challenges through technology.</p>
+            <a href="#">View Details</a>
+          </div>
+          <div class="timeline-event">
+            <h3>Robin</h3>
+            <img src="images/robin.jpg" alt="Robin Project Image" style="width:100%; height:auto; margin-top:10px;" />
+            <p><strong>Role:</strong> Hackathon Participant</p>
+            <p><strong>Date:</strong> UoA Scientific Hackathon</p>
+            <p><strong>Tech Stack:</strong> Object Detection AI</p>
+            <p>Developed an AI-powered rubbish detection system to improve waste disposal habits on campus, winning the Exec’s Choice Award.</p>
+            <a href="#">View Details</a>
+          </div>
+          <div class="timeline-event">
+            <h3>Crypto Critters</h3>
+            <img src="images/crypto-critters.jpg" alt="Crypto Critters Project Image" style="width:100%; height:auto; margin-top:10px;" />
+            <p><strong>Role:</strong> Full Stack Developer</p>
+            <p><strong>Date:</strong> March 2025</p>
+            <p><strong>Tech Stack:</strong> Hardhat, Solidity, Scaffold-ETH, Ethers.js, React, Next.js, Tailwind CSS</p>
+            <p>Created a Web3 game supporting conservation efforts by converting in-game currency to crypto, winning the Kiwiana Prize for the most impactful NZ solution.</p>
+            <a href="#">View Details</a>
+          </div>
+          <div class="timeline-event">
+            <h3>Findr</h3>
+            <img src="images/findr.jpg" alt="Findr Project Image" style="width:100%; height:auto; margin-top:10px;" />
+            <p><strong>Role:</strong> Hackathon Participant</p>
+            <p><strong>Date:</strong> SESA x WDCC Hackathon</p>
+            <p><strong>Tech Stack:</strong> Web Development</p>
+            <p>Developed a web app inspired by Tinder, allowing users to swipe to save planets and learn about the cosmos, winning the ‘Most Entertaining Solution’ prize.</p>
+            <a href="#">View Details</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" style="padding: 50px; text-align: center; background-color: #111; color: #fff;">
+        <h2>Contact</h2>
+        <p>Feel free to reach out to me at <a href="mailto:evan@example.com" style="color: #00bcd4;">evan@example.com</a>.</p>
+      </section>
     </main>
+
+    <div id="navbar" class="navbar" style="display: flex; position: absolute; top: 0; left: 0; width: 100%; z-index: 1000;">
+      <a href="#">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <footer style="padding: 20px; text-align: center; background-color: #000; color: #fff;">
+      <p>&copy; 2025 Evan Au. All rights reserved.</p>
+    </footer>
 
     <script type="module" src="js/main.js"></script>
   </body>

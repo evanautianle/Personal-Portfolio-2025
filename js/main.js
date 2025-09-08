@@ -1,92 +1,126 @@
-// Import necessary libraries from the THREE.js framework
+// Import libraries
 import * as THREE from "https://cdn.skypack.dev/three@0.129.0/build/three.module.js";
-// To allow for the camera to move around the scene
 import { OrbitControls } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/controls/OrbitControls.js";
-// To allow for importing the .gltf file
 import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js";
 
-// Initialize the scene where all 3D objects will be added
+// Initialize scene and camera
 const scene = new THREE.Scene();
-// Set up the camera with a perspective view
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.set(20, 0, 1); // Adjusted camera position to move the globe higher in the view
+camera.lookAt(0, 0, 0); // Ensure the camera is focused on the center of the scene
 
-// Variables to track mouse position for interactive globe movement
+// Track mouse position
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
 
-// Global variable to store the loaded 3D object
+// Global variable for 3D object
 let object;
 
-// Enable camera controls for user interaction
+// Enable camera controls
 let controls;
 
-// Specify the object to render (e.g., globe)
+// Specify object to render
 let objToRender = 'globe';
 
-// Create a loader to import 3D models in .gltf format
+// Load 3D model
 const loader = new GLTFLoader();
-
-// Load the specified 3D model and add it to the scene
 loader.load(
   `./models/${objToRender}/scene.gltf`,
   function (gltf) {
-    // If the file is loaded, add it to the scene
     object = gltf.scene;
     scene.add(object);
   },
   function (xhr) {
-    // While it is loading, log the progress
     console.log((xhr.loaded / xhr.total * 100) + '% loaded');
   },
   function (error) {
-    // If there is an error, log it
     console.error(error);
   }
 );
 
-// Set up the renderer and configure its size and transparency
-const renderer = new THREE.WebGLRenderer({ alpha: true }); // Alpha: true allows for the transparent background
-renderer.setSize(window.innerWidth, window.innerHeight);
+// Load the satellite model
+const satelliteLoader = new GLTFLoader();
+let satellite;
+let angle = Math.PI;
+let tiltAngle = Math.PI / 6;
+satelliteLoader.load(
+  './models/satellite/scene.gltf',
+  function (gltf) {
+    satellite = gltf.scene;
+    satellite.scale.set(0.5, 0.5, 0.5);
+    const radius = 10;
+    satellite.position.set(radius * Math.cos(angle), 0, radius * Math.sin(angle));
+    scene.add(satellite);
+  },
+  function (xhr) {
+    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+  },
+  function (error) {
+    console.error(error);
+  }
+);
 
-// Attach the renderer's output to the HTML container
+// Set up renderer
+const renderer = new THREE.WebGLRenderer({ alpha: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById("container3D").appendChild(renderer.domElement);
 
-// Position the camera at an appropriate distance from the object
-camera.position.z = objToRender === "globe" ? 25 : 500;
-
-// Add lighting to the scene for better visibility of the 3D model
-const topLight = new THREE.DirectionalLight(0xffffff, 1); // (color, intensity)
-topLight.position.set(500, 500, 500) //top-left-ish
-topLight.castShadow = true;
-scene.add(topLight);
-
-const ambientLight = new THREE.AmbientLight(0x333333, objToRender === "globe" ? 5 : 1);
+// Simplify lighting setup
+scene.clear();
+const ambientLight = new THREE.AmbientLight(0xffffff, 1);
 scene.add(ambientLight);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+scene.add(directionalLight);
 
-// Add orbit controls to allow users to rotate and zoom the camera
+// Add orbit controls
 if (objToRender === "globe") {
   controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableZoom = false;
+  controls.enableRotate = true;
+  controls.minPolarAngle = Math.PI / 2;
+  controls.maxPolarAngle = Math.PI / 2;
 }
 
-// Define the animation loop to continuously render the scene
+// Animation loop
 function animate() {
   requestAnimationFrame(animate);
-  // Here we could add some code to update the scene, adding some automatic movement
+
+  // Rotate the globe
+  if (object) {
+    object.rotation.y += 0.005; // Adjust rotation speed as needed
+  }
+
+  // Update satellite position to orbit the globe
+  if (satellite) {
+    angle += 0.01;
+    const radius = 10;
+    satellite.position.x = radius * Math.cos(angle);
+    satellite.position.z = radius * Math.sin(angle);
+    satellite.position.y = radius * Math.sin(tiltAngle) * Math.sin(angle);
+
+    satellite.traverse((child) => {
+      if (child.isMesh) {
+        child.material.emissive = new THREE.Color(0xffffff);
+        child.material.emissiveIntensity = 5;
+      }
+    });
+  }
+
   renderer.render(scene, camera);
 }
 
-// Adjust the camera and renderer settings when the window is resized
+// Adjust on window resize
 window.addEventListener("resize", function () {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-// Track mouse movements to enable interactive globe rotation
+// Track mouse movements
 document.onmousemove = (e) => {
   mouseX = e.clientX;
   mouseY = e.clientY;
-}
+};
 
-// Start the rendering process
+// Start rendering
 animate();

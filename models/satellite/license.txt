@@ -1,0 +1,8 @@
+Model Information:
+* title:	Satellites
+* source:	https://sketchfab.com/3d-models/satellites-1dfb3bb50daa4f6f94fdcad1321ce50f
+* author:	Ay23man (https://sketchfab.com/ay23man)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
