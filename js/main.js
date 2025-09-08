@@ -124,3 +124,14 @@ document.onmousemove = (e) => {
 
 // Start rendering
 animate();
+
+// Toggle navbar visibility
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.querySelector(".hamburger");
+  const navbar = document.querySelector(".navbar");
+
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    navbar.classList.toggle("active");
+  });
+});

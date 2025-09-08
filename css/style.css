@@ -1,8 +1,8 @@
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
-  background-color: #000;
-  color: #fff;
+  background-color: #1a1a1a; /* Set the background to a dark grey for a space-like theme */
+  color: #fff; /* Ensure text is visible on the dark background */
   line-height: 1.6;
 }
 
@@ -46,53 +46,152 @@ header h1 {
 
 @media (max-width: 768px) {
   #container3D {
-    height: 50vh; /* Adjust height for smaller screens */
+    height: 70vh; /* Adjust height for smaller screens */
+    margin-top: -400px; /* Reduce upward shift */
+  }
+
+  header {
+    margin-top: 100px; /* Adjust header spacing */
+  }
+
+  section {
+    padding: 40px 15px; /* Reduce padding for smaller screens */
   }
 }
 
-/* Navbar styles */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
+/* Navbar styles for mobile-first design */
 .navbar {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  background-color: #1a1a1a;
-  color: #fff;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;
-  font-size: 1rem;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
-  animation: fadeIn 1.5s ease-out;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #1a1a1a;
+  padding: 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure it appears above the background */
+  transform: translateY(-100%); /* Initially hidden */
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Ensure the hamburger menu is fully visible when open */
+.navbar.active {
+  transform: translateY(60px); /* Increase space to prevent cutting off */
 }
 
 .navbar a {
   color: #fff;
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  transition: background-color 0.3s, color 0.3s;
+  padding: 10px 20px;
+  border-bottom: 1px solid #333;
+  width: 100%;
+  text-align: left;
+  font-size: 1.2em; /* Increase font size for better readability */
 }
 
 .navbar a:hover {
-  color: #000;
   background-color: #00bcd4;
+  color: #000;
+}
+
+/* Fix hamburger menu alignment and spacing for mobile view */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center; /* Center align the menu */
+  width: 40px; /* Adjust width for better visibility */
+  height: 40px; /* Adjust height for better visibility */
+  background-color: transparent; /* Remove background color */
+  border: none;
+  cursor: pointer;
+  z-index: 1100; /* Ensure it appears above other elements */
+  position: fixed; /* Fix position to the top-left corner */
+  top: 20px; /* Increase top spacing for better visibility */
+  left: 15px; /* Adjusted to ensure visibility */
+  right: 20px; /* Ensure enough space from the right edge */
+  padding: 5px; /* Add padding to ensure the cross icon fits well */
+  overflow: hidden; /* Prevent elements from overflowing the container */
+}
+
+.hamburger div {
+  position: relative; /* Ensure proper alignment within the container */
+  width: 60px; /* Adjust width to fit within the container */
+  height: 3px; /* Maintain thickness */
+  background-color: #fff; /* Ensure visibility on dark background */
+  border-radius: 2px; /* Add slight rounding for aesthetics */
+  transition: all 0.3s ease;
+}
+
+
+
+@media (min-width: 768px) {
+  .navbar {
+    flex-direction: row;
+    justify-content: center;
+    transform: translateY(0); /* Always visible on larger screens */
+    position: fixed; /* Ensure navbar stays at the top */
+    top: 0; /* Align to the top of the viewport */
+    width: 100%; /* Full width for better visibility */
+    background-color: #1a1a1a; /* Add background color for contrast */
+    z-index: 1000; /* Ensure it appears above other elements */
+  }
+
+  .navbar a {
+    border: none;
+    padding: 0.5rem 1rem;
+  }
+
+  .hamburger {
+    display: none; /* Hide hamburger on larger screens */
+  }
 }
 
 main {
   font-family: 'Montserrat', sans-serif;
   position: relative;
   z-index: 2; /* Ensure main content stays above the 3D container */
+}
+
+/* General section styling */
+section {
+  padding: 50px;
+  text-align: center;
+}
+
+/* About section */
+#about {
+  background-color: #111;
+  color: #fff;
+}
+
+/* Education section */
+#education {
+  background-color: #222;
+  color: #fff;
+  text-align: left;
+}
+
+/* Experience section */
+#experience {
+  background-color: #111;
+  color: #fff;
+  text-align: left;
+}
+
+/* Contact section */
+#contact {
+  background-color: #111;
+  color: #fff;
+}
+
+#contact a {
+  color: #00bcd4;
+}
+
+#contact a:hover {
+  text-decoration: underline;
 }
 
 section {
@@ -209,10 +308,33 @@ section {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
+/* Footer styling */
 footer {
   padding: 20px;
   text-align: center;
   background-color: #000;
   color: #fff;
-  font-size: 0.9rem;
+}
+
+/* Add styles for light mode */
+body.light-mode {
+  background-color: #f9f9f9; /* Light background */
+  color: #000; /* Dark text */
+}
+
+.navbar.light-mode {
+  background-color: #fff; /* Light navbar background */
+}
+
+.navbar.light-mode a {
+  color: #000; /* Dark text for links */
+}
+
+.hamburger.light-mode div {
+  background-color: #000; /* Dark hamburger lines */
+}
+
+footer.light-mode {
+  background-color: #eaeaea; /* Light footer background */
+  color: #000; /* Dark footer text */
 }
