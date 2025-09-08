@@ -77,7 +77,8 @@ header h1 {
 
 /* Ensure the hamburger menu is fully visible when open */
 .navbar.active {
-  transform: translateY(60px); /* Increase space to prevent cutting off */
+  transform: translateY(0px); /* Increase space to prevent cutting off */
+  padding-top: 70px;
 }
 
 .navbar a {
