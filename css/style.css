@@ -258,6 +258,13 @@ section {
   color: #fff;
 }
 
+/* Ensure all project images in the #projects section have the same size */
+#projects img {
+  width: 200px; /* Set a consistent width */
+  height: 150px; /* Set a consistent height */
+  object-fit: cover; /* Maintain aspect ratio and fill the dimensions */
+}
+
 /* Adjusted timeline width and centering */
 .timeline {
   margin: 0 auto;
